@@ -17,6 +17,5 @@ caption:{
 
 })
 
-const postModel = mongoose.model("posts" ,postSchema)
+export const postModel = mongoose.model("posts" ,postSchema)
 
-export default postModel

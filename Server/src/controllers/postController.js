@@ -1,6 +1,8 @@
-import postModel from '../model/post.model.js'
+import { postModel } from '../model/post.model.js'
+
 import uploadFiles from '../services/Storage.service.js'
 
+// post GET API
 export const getpost = async (req, res) => {
     try {
         const allPost = await postModel.find()
@@ -19,27 +21,28 @@ export const getpost = async (req, res) => {
 
 }
 
+
+//Post CREATE API
 export const createpost = async (req, res) => {
 
     const { title, caption } = req.body
-   
-if (!req.file.buffer || !req.file.originalname) {
-    
-    return res.status(500).json({
-        message: "All fileds are require"
-    })
 
-}
+    if (!req.file.buffer || !req.file.originalname) {
+
+        return res.status(500).json({
+            message: "All fileds are require"
+        })
+
+    }
     try {
 
-console.log("before  send files ");
 
-       const  uploded = await uploadFiles(
+        const uploded = await uploadFiles(
             req.file.buffer,
             req.file.originalname
         )
 
-console.log(uploded,"uploaded file ");
+
 
         const newPost = await postModel.create({
             title,
@@ -60,7 +63,6 @@ console.log(uploded,"uploaded file ");
 
     }
 }
-
 
 
 
