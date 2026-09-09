@@ -14,7 +14,7 @@ const usersSchema = new mongoose.Schema({
     },
     phone_no: {
         type: Number,
-        required: true,
+        required: [true,"phone number is required"],
         minlength: 10
 
 
@@ -22,15 +22,13 @@ const usersSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique:true,
         match:/^(?!\.)(?!.*\. \.)([a-z0-9_'+ \-\.]*)[a-z0-9_+\-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$/
-
-
     },
     password: {
         type: String,
-        required: true
-        
-
+        required: true,
+        select:false
     }
 
 

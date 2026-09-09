@@ -1,9 +1,9 @@
 import { postModel } from '../model/post.model.js'
 
-import uploadFiles from '../services/Storage.service.js'
+import uploadFiles from '../middleware/Storage.service.js'
 
 // post GET API
-export const getpost = async (req, res) => {
+export const getpost = async (req,res) => {
     try {
         const allPost = await postModel.find()
         res.status(200).json({

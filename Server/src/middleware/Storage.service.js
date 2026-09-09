@@ -7,8 +7,6 @@ const storageInstance = new Imagekit({
     privateKey: process.env.IK_PRIVATE_KEY
 
 })
-
-
 const uploadFiles = async (file, fileName) => {
 
     try {
@@ -34,11 +32,6 @@ const uploadFiles = async (file, fileName) => {
             ;
 
     }
-    ;
-
-
-
-
 }
 
 export default uploadFiles
