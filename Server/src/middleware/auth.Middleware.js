@@ -1,9 +1,10 @@
-import jwt from 'jsonwebtoken'
+import { verifyAccesstoken } from "../utils/jwt.js";
 import "dotenv/config";
 
 
- export const authMiddleware = (req, res, next) => {
-    const token = req.headers.authorization;
+export const authMiddleware = (req, res, next) => {
+
+    const token = req.headers.authorization?.split(" ")[1];
 
     //validation
     if (!token) {
@@ -14,12 +15,8 @@ import "dotenv/config";
 
     //token verify
     try {
-        const verified_user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-        console.log(verified_user);
-        
-        req.user = verified_user
-         next();
-
+        req.user = verifyAccesstoken(token)
+            next();
 
     } catch (error) {
         return res.status(401).json({ message: "invaild token or expired token " })

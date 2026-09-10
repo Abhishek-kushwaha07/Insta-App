@@ -8,12 +8,12 @@ const usersSchema = new mongoose.Schema({
 
     },
     age: {
-
         type: Number,
         required: true
     },
     phone_no: {
         type: Number,
+        unique:true,
         required: [true,"phone number is required"],
         minlength: 10
 
@@ -28,12 +28,11 @@ const usersSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        select:false
     }
 
 
 
-})
+},{timestamps:true})
 
 
 

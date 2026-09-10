@@ -4,8 +4,12 @@ import uploadFiles from '../middleware/Storage.service.js'
 
 // post GET API
 export const getpost = async (req,res) => {
+
+
+
+
     try {
-        const allPost = await postModel.find()
+        const allPost = await postModel.find( {userid:req.user.userid})
         res.status(200).json({
             message: "all posts are ",
             allPost
@@ -41,10 +45,13 @@ export const createpost = async (req, res) => {
             req.file.buffer,
             req.file.originalname
         )
-
-
+  
+        console.log(req.user.userid);
+        
+        
 
         const newPost = await postModel.create({
+            userid:req.user.userid,
             title,
             caption,
             image: uploded.url,
