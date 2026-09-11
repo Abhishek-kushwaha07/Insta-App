@@ -1,7 +1,7 @@
 import express from 'express'
-import upload from '../config/multer.js'
-import { getpost ,createpost, } from '../controllers/postController.js'
-import { authMiddleware } from '../middleware/auth.Middleware.js'
+import upload from '../../config/multer.js'
+import { getpost ,createpost, } from './post.controller.js'
+import { authMiddleware } from '../../middlewares/auth.Middleware.js'
 
 
 const router = express.Router() 
@@ -15,5 +15,3 @@ router.get("/getpost",authMiddleware ,getpost  )
 router.post("/create",authMiddleware,upload.single("image"), createpost )
 
 export default router
-
-

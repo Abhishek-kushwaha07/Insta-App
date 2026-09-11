@@ -7,7 +7,7 @@ export const generateTokens = (id) => {
     const accessToken = jwt.sign(
         { userid: id},
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "15m" }
+        { expiresIn: "1m" }
     )
 
     const  refreshToken = jwt.sign(

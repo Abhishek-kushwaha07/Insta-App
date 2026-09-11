@@ -1,7 +1,9 @@
 import bycrpt from 'bcryptjs'
-import { userDBmodel } from '../model/usersDB.model.js'
+import { userDBmodel } from '../users/user.model.js'
 import "dotenv/config";
-import {generateTokens} from '../utils/jwt.js'
+import { generateTokens, verifyRefreshtoken } from '../../utils/jwt.js'
+
+
 
 //User Registraion API
 export const register = async (req, res) => {
@@ -30,7 +32,8 @@ export const register = async (req, res) => {
             age,
             phone_no,
             email,
-            password: hashedpass
+            password: hashedpass,
+
         })
         res.status(201).json({
             message: "register Success",
@@ -61,19 +64,28 @@ export const login = async (req, res) => {
     }
     const isMatched = await bycrpt.compare(password, currentUser.password)
 
-  
-  
+
+
     if (!isMatched) {
         return res.status(401).json({
             message: "email or password is Invaild"
         })
 
     }
-    else {      
-        const {accessToken ,refreshToken} = generateTokens(currentUser._id)
+    else {
+        const { accessToken, refreshToken } = generateTokens(currentUser._id)
+
+        currentUser.refreshToken = refreshToken
+        await currentUser.save()
+        res.cookie("refreshToken", refreshToken, {
+            httpOnly: true
+        })
+
+
+
         res.status(200).json({
             message: "User login Successfull",
-            accessToken,refreshToken
+            token: accessToken
         })
 
     }
@@ -82,8 +94,35 @@ export const login = async (req, res) => {
 }
 
 
-// export const refreshToken =  async (req, res) = {
-    
+export const renewToken = async (req, res) => {
+
+    const oldRefreshToken = req.cookies.refreshToken
+    if (!oldRefreshToken) {
+        return res.status(401).json({
+            message: "refresh Token Not Found"
+        })
+    }
+    const decoded = verifyRefreshtoken(oldRefreshToken)
+
+    const user = await userDBmodel.findById(decoded.userid)
+
+    if (user.refreshToken !== oldRefreshToken) {
+         return res.status(401).json({
+            message: "invaild Refresh Token"
+        })
+    }
+
+    const { accessToken: newAccessToken, refreshToken: newRefreshToken } = generateTokens(decoded.userid)
+
+    user.refreshToken = newRefreshToken 
+    await user.save() 
+
+    return res.status(200).json(
+        {
+            newAccessToken,
+            message: "New access token generated"
+        }
+    )
 
 
-// }
+}

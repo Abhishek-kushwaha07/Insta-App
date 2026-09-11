@@ -28,8 +28,11 @@ const usersSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
 
+    refreshToken:{
+        type:String
+    }
 
 
 },{timestamps:true})
@@ -38,4 +41,3 @@ const usersSchema = new mongoose.Schema({
 
 
 export const userDBmodel = mongoose.model("userDB", usersSchema)
-

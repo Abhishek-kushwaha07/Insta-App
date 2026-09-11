@@ -1,5 +1,5 @@
-import {app} from './app/app.js'
-import {ConnectDB} from "./config/ConnectDB.js"
+import {app} from './app.js'
+import {ConnectDB} from "./config/db.js"
 await ConnectDB()
 const Port = 3000
 

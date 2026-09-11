@@ -1,6 +1,6 @@
-import { postModel } from '../model/post.model.js'
+import { postModel } from './post.model.js'
 
-import uploadFiles from '../middleware/Storage.service.js'
+import uploadFiles from '../../middlewares/Storage.service.js'
 
 // post GET API
 export const getpost = async (req,res) => {
@@ -70,8 +70,3 @@ export const createpost = async (req, res) => {
 
     }
 }
-
-
-
-
-

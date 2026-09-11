@@ -23,4 +23,3 @@ caption:{
 })
 
 export const postModel = mongoose.model("posts" ,postSchema)
-

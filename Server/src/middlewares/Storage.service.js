@@ -38,4 +38,3 @@ const uploadFiles = async (file, fileName) => {
 }
 
 export default uploadFiles
-
