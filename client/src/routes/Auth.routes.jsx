@@ -1,12 +1,20 @@
 import {
   createBrowserRouter,
-  RouterProvider,
 } from "react-router";
 
 import Register from "../pages/register";
-import Login from "../pages/Login"
+import Login from "../pages/login"
+import Feed from "../pages/Feed";
 
  export const router = createBrowserRouter([{
+  path:"/",
+  element:<Feed/>
+},
+{
+  path:"/feed",
+  element:<Feed/>
+},
+{
   path:"/register",
   element:<Register/>
 },

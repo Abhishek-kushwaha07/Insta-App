@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+.auth-logo { display:inline-flex; align-items:center; gap:.5rem; font-size:1.5rem; font-weight:800; letter-spacing:-.05em; }
+.auth-logo i { display:grid; place-items:center; width:1.75rem; height:1.75rem; border-radius:.55rem; background:#fffaf5; color:#292524; font-family:ui-sans-serif,system-ui,sans-serif; font-size:1rem; font-style:normal; font-weight:900; line-height:1; }
+.auth-layout { min-height:100vh; display:grid; grid-template-columns:48% 52%; background:#fbfaf8; }
+.auth-showcase { position:relative; overflow:hidden; display:flex; flex-direction:column; padding:2.75rem 13%; color:#fffaf5; background:#292524; }
+.auth-logo--showcase { position:relative; z-index:1; }
+.auth-showcase-copy { position:relative; z-index:1; max-width:34rem; margin:auto 0; }
+.auth-showcase-copy p { color:#d4ad91; text-transform:uppercase; font-size:10px; font-weight:700; letter-spacing:.2em; }
+.auth-showcase-copy h2 { margin:1.25rem 0 0; font-family:Georgia,serif; font-size:clamp(3.5rem,6vw,5.2rem); font-weight:400; line-height:.94; letter-spacing:-.055em; }
+.auth-showcase-copy span { display:block; max-width:21rem; margin-top:1.5rem; color:#d6d3d1; font-size:.875rem; line-height:1.5; }
+.auth-content { position:relative; display:flex; min-height:100vh; align-items:center; justify-content:center; padding:3rem; }
+.auth-logo--mobile { display:none; position:absolute; top:2rem; left:2rem; color:#292524; }
+.auth-form-wrap { width:100%; max-width:405px; }
+.auth-input input { width:100%; border:1px solid #ded8d2; border-radius:.7rem; background:#fffdfa; padding:.78rem .85rem; font-size:.875rem; color:#292524; outline:none; transition:border-color .18s, box-shadow .18s; }
+.auth-input input::placeholder { color:#aaa09a; }
+.auth-input input:focus { border-color:#b18369; box-shadow:0 0 0 3px #f4e6dc; }
+.auth-orb { position:absolute; border-radius:999px; pointer-events:none; }
+.auth-orb-one { width:34rem; height:34rem; right:-12rem; bottom:-15rem; background:radial-gradient(circle at 35% 35%,#eab789 0%,#a26871 37%,#5b4855 66%,transparent 67%); opacity:.9; }
+.auth-orb-two { width:16rem; height:16rem; right:18%; top:14%; background:radial-gradient(circle,#e5ca91 0%,#986f94 35%,transparent 67%); opacity:.75; }
+@media (max-width: 1023px) { .auth-layout { display:block; } .auth-showcase { display:none; } .auth-content { padding:7.75rem 1.5rem 3rem; } .auth-logo--mobile { display:inline-flex; top:2rem; left:50%; transform:translateX(-50%); } .auth-logo--mobile i { width:2rem; height:2rem; border-radius:.7rem; background:#292524; color:#fffaf5; } }
